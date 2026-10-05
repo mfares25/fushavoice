@@ -1,0 +1,16 @@
+{
+  "name": "fushavoice",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FushaVoice licensing site with built-in visitor log",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "pg": "^8.13.0"
+  }
+}

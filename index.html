@@ -321,7 +321,7 @@ document.getElementById('inquiry').addEventListener('submit', async e => {
     const data = await res.json();
     if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || 'Request failed');
     form.reset();
-    if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: 'quote-request-sent', title: 'Quote request sent', event: true });
+    navigator.sendBeacon && navigator.sendBeacon('/api/event', JSON.stringify({ event: 'quote-request-sent', type: f.get('type') }));
     status.textContent = 'Thank you — your request has been sent. We will reply within 48 hours.';
   } catch (err) {
     status.textContent = `Sorry, something went wrong. Please email us directly at ${CONTACT_EMAIL}.`;
@@ -332,6 +332,5 @@ document.getElementById('inquiry').addEventListener('submit', async e => {
 
 document.getElementById('year').textContent = new Date().getFullYear();
 </script>
-<script data-goatcounter="https://fushavoice.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
