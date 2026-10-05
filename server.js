@@ -225,8 +225,9 @@ const server = http.createServer(async (req, res) => {
 
     if (pathname === '/admin' || pathname === '/admin/') {
       if (!ADMIN_PASSWORD) {
-        res.writeHead(503, { 'Content-Type': 'text/plain' });
-        return res.end('Admin is disabled: set the ADMIN_PASSWORD environment variable.');
+        // 200 so hosting platforms show this message instead of their own error page.
+        res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' });
+        return res.end('Admin is disabled: set the ADMIN_PASSWORD environment variable (Run time) and redeploy.');
       }
       if (!checkAuth(req)) {
         res.writeHead(401, { 'WWW-Authenticate': 'Basic realm="FushaVoice Admin"', 'Content-Type': 'text/plain' });
