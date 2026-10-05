@@ -1,10 +1,10 @@
 // FushaVoice web server: serves the site, records visits, and provides a
-// password-protected /admin page with the visitor log. No third-party services.
+// password-protected /mfares page with the visitor log. No third-party services.
 //
 // Environment:
 //   PORT            port to listen on (default 8080)
-//   ADMIN_PASSWORD  password for /admin (required; /admin is disabled without it)
-//   ADMIN_USER      username for /admin (default "admin")
+//   ADMIN_PASSWORD  password for /mfares (required; /mfares is disabled without it)
+//   ADMIN_USER      username for /mfares (default "admin")
 //   DATABASE_URL    PostgreSQL connection string; if unset, visits are stored in DATA_FILE
 //   DATA_FILE       JSON-lines file for visits (default ./data/visits.jsonl)
 
@@ -223,7 +223,7 @@ const server = http.createServer(async (req, res) => {
       return res.end();
     }
 
-    if (pathname === '/admin' || pathname === '/admin/') {
+    if (pathname === '/mfares' || pathname === '/mfares/') {
       if (!ADMIN_PASSWORD) {
         // 200 so hosting platforms show this message instead of their own error page.
         res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' });
