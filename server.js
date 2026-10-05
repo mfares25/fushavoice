@@ -151,7 +151,7 @@ async function adminPage(req) {
   const link = (d, b) => `?days=${d}${b ? '&bots=1' : ''}`;
 
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex"><title>صوت الفصحى (قناة ورق) — Admin</title><style>
+<meta name="robots" content="noindex"><title>صوت الفصحى — Admin</title><style>
 :root { --bg:#f7f5f0; --card:#fff; --ink:#1d1b16; --muted:#7a7468; --line:#e6e1d6; --accent:#9a6b1f; }
 @media (prefers-color-scheme: dark) { :root { --bg:#14130f; --card:#1e1c17; --ink:#eee9df; --muted:#9a9384; --line:#322f27; --accent:#d9a548; } }
 * { box-sizing:border-box; } body { margin:0; background:var(--bg); color:var(--ink); font:14px/1.5 system-ui, sans-serif; }
@@ -167,7 +167,7 @@ th { font-weight:600; color:var(--muted); font-size:12px; } .num { text-align:ri
 .scroll { overflow-x:auto; } .log td { white-space:nowrap; } .ua { max-width:280px; overflow:hidden; text-overflow:ellipsis; }
 .tag { background:var(--accent); color:var(--card); border-radius:4px; padding:1px 6px; font-size:12px; }
 </style></head><body><div class="wrap">
-<h1>صوت الفصحى (قناة ورق) — Visitors</h1>
+<h1>صوت الفصحى — Visitors</h1>
 <div class="nav">${[1, 7, 30, 90].map(d => `<a class="${d === days ? 'on' : ''}" href="${link(d, showBots)}">${d === 1 ? 'Today (24h)' : d + ' days'}</a>`).join('')}
 <a href="${link(days, !showBots)}">${showBots ? 'Hide bots' : 'Show bots'}</a></div>
 <div class="stats">
