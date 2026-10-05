@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FushaVoice — Classical Arabic Audio Licensing</title>
+<meta name="description" content="700+ hours of Classical Arabic history narration in a single voice — the narrator of Waraq (276K subscribers, 34.9M views). Available for licensing, rights acquisition and annual voice contracts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0d12; --card: #12161f; --border: #232a38;
+    --text: #e8e2d4; --text-2: #8a93a6; --gold: #c8a84b; --gold-2: #e6c66a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.7; }
+  a { color: var(--gold); text-decoration: none; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .ar { font-family: 'Amiri', serif; }
+
+  header { position: sticky; top: 0; z-index: 10; background: rgba(11,13,18,.9); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); }
+  .logo .ar { font-size: 1.2rem; margin-inline-start: 8px; color: var(--text-2); }
+  nav a { color: var(--text-2); margin-inline-start: 22px; font-size: .95rem; }
+  nav a:hover { color: var(--text); }
+
+  .hero { padding: 100px 0 80px; text-align: center; }
+  .hero .ar-line { font-family: 'Amiri', serif; font-size: 1.6rem; color: var(--gold); margin-bottom: 10px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5.5vw, 4rem); line-height: 1.2; font-weight: 600; }
+  .hero h1 span { color: var(--gold); }
+  .hero p { color: var(--text-2); max-width: 720px; margin: 22px auto 36px; font-size: 1.1rem; }
+  .hero p b { color: var(--text); font-weight: 600; }
+  .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; border: 1px solid var(--gold); }
+  .btn.primary { background: var(--gold); color: #111; }
+  .btn.primary:hover { background: var(--gold-2); }
+  .btn + .btn { margin-inline-start: 12px; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 60px; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
+  .stat b { display: block; font-size: 2rem; color: var(--gold); }
+  .stat small { color: var(--text-2); }
+
+  section { padding: 80px 0; border-top: 1px solid var(--border); }
+  h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 600; margin-bottom: 8px; }
+  .lead { color: var(--text-2); margin-bottom: 40px; max-width: 720px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 26px; display: flex; flex-direction: column; }
+  .card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+  .card .tag { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .card p { color: var(--text-2); font-size: .95rem; flex: 1; }
+  .card ul { color: var(--text-2); font-size: .9rem; margin: 14px 0 0 18px; }
+  .card.featured { border-color: var(--gold); }
+  .card .ar { font-size: 1.25rem; color: var(--gold); margin-bottom: 4px; }
+
+  .why { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+  .why div h3 { font-size: 1rem; margin-bottom: 6px; color: var(--gold); }
+  .why div p { color: var(--text-2); font-size: .95rem; }
+
+  .filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .filters button { background: var(--card); color: var(--text-2); border: 1px solid var(--border); border-radius: 20px; padding: 6px 16px; font-family: inherit; cursor: pointer; }
+  .filters button.active { color: #111; background: var(--gold); border-color: var(--gold); }
+
+  .episodes { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+  .ep { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; color: var(--text); transition: border-color .2s, transform .2s; }
+  .ep:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .ep .thumb { position: relative; aspect-ratio: 16/9; background: #000; }
+  .ep .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ep .dur { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,.8); color: #fff; font-size: .8rem; padding: 2px 8px; border-radius: 4px; }
+  .ep .play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .2s; background: rgba(0,0,0,.35); }
+  .ep:hover .play { opacity: 1; }
+  .ep .play span { width: 56px; height: 56px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; color: #111; font-size: 1.3rem; padding-left: 4px; }
+  .ep .body { padding: 16px 18px; flex: 1; display: flex; flex-direction: column; }
+  .ep .ar { font-size: 1.15rem; line-height: 1.6; margin-bottom: 6px; }
+  .ep .en { color: var(--text-2); font-size: .9rem; flex: 1; }
+  .ep .meta { display: flex; justify-content: space-between; margin-top: 12px; font-size: .8rem; color: var(--text-2); }
+  .ep .meta .cat { color: var(--gold); }
+  .note { color: var(--text-2); font-size: .9rem; margin-top: 24px; }
+
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 760px; }
+  form .full { grid-column: 1 / -1; }
+  label { display: block; font-size: .9rem; color: var(--text-2); margin-bottom: 6px; }
+  input, select, textarea { width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px; color: var(--text); font-family: inherit; font-size: 1rem; }
+  textarea { min-height: 120px; resize: vertical; }
+  form button { cursor: pointer; font-family: inherit; font-size: 1rem; }
+
+  footer { padding: 40px 0; text-align: center; color: var(--text-2); font-size: .85rem; border-top: 1px solid var(--border); }
+
+  @media (max-width: 720px) {
+    nav { display: none; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    form { grid-template-columns: 1fr; }
+    .btn + .btn { margin: 12px 0 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">Fusha<span style="color:var(--text)">Voice</span><span class="ar">صوت الفصحى</span></div>
+    <nav>
+      <a href="#library">Library</a>
+      <a href="#samples">Episodes</a>
+      <a href="#licensing">Licensing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="ar-line" lang="ar" dir="rtl">العربية الفصحى بصوت واحد</div>
+    <h1>700 hours of <span>Arabic history</span><br>in one trusted voice</h1>
+    <p>The complete narration library behind <b>Waraq <span class="ar">(قناة ورق)</span></b> — one of the leading Arabic history channels on YouTube. Long-form documentary narration in precise Classical Arabic, available to audiobook platforms, AI companies and publishers.</p>
+    <a class="btn primary" href="#contact">Request a Quote</a>
+    <a class="btn" href="#samples">Hear the Voice</a>
+
+    <div class="stats">
+      <div class="stat"><b>700+</b><small>hours of narration</small></div>
+      <div class="stat"><b>1,000+</b><small>episodes published</small></div>
+      <div class="stat"><b>276K</b><small>YouTube subscribers</small></div>
+      <div class="stat"><b>34.9M</b><small>total views</small></div>
+    </div>
+  </div>
+</div>
+
+<section id="why">
+  <div class="wrap">
+    <h2>Why this library</h2>
+    <p class="lead">Large single-speaker Arabic corpora are rare. Most commercially available Modern Standard Arabic speech datasets are measured in tens of hours, not hundreds.</p>
+    <div class="why">
+      <div><h3>Proven with audiences</h3><p>Millions of listeners across the Arab world have chosen this voice — tens of millions of views and a loyal, growing audience.</p></div>
+      <div><h3>Single-speaker scale</h3><p>700+ hours from one narrator, ideal for training natural, expressive Arabic text-to-speech voices.</p></div>
+      <div><h3>Rich vocabulary</h3><p>Long-form history spanning every era and region: names, places, dates and terminology that everyday speech data lacks.</p></div>
+      <div><h3>Long-form, ready to publish</h3><p>Many episodes run 1–4 hours, structured like audiobooks and ready for listening platforms.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="library">
+  <div class="wrap">
+    <h2>The Library</h2>
+    <p class="lead">Documentary-style narration covering world history from the ancient world to the 20th century, plus book summaries and world stories. The full catalog with durations and rights status is available on request.</p>
+    <div class="grid" id="categories"></div>
+  </div>
+</section>
+
+<section id="samples">
+  <div class="wrap">
+    <h2>Featured Episodes</h2>
+    <p class="lead">A selection of the most-listened episodes. Each opens on YouTube.</p>
+    <div class="filters" id="filters"></div>
+    <div class="episodes" id="episodeList"></div>
+    <p class="note">Clean narration-only audio (no music, WAV masters) is provided to licensing partners under NDA.</p>
+  </div>
+</section>
+
+<section id="licensing">
+  <div class="wrap">
+    <h2>Licensing Options</h2>
+    <p class="lead">Four ways to work together — combine them to fit your needs.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="tag">Audiobook &amp; podcast platforms</div>
+        <h3>Distribution License</h3>
+        <p>Stream or sell episodes on your platform for a defined term, on revenue share or a fixed fee per title.</p>
+        <ul><li>Non-exclusive or regional exclusive</li><li>1–5 year terms</li></ul>
+      </div>
+      <div class="card featured">
+        <div class="tag">AI companies</div>
+        <h3>Voice Data License</h3>
+        <p>License the library as a training dataset for Arabic text-to-speech and speech-recognition models.</p>
+        <ul><li>One consistent speaker, ideal for TTS</li><li>Matching scripts available</li></ul>
+      </div>
+      <div class="card">
+        <div class="tag">Publishers &amp; investors</div>
+        <h3>Rights Acquisition</h3>
+        <p>Full transfer of commercial rights for selected collections or the whole library, with clearly defined scope and territories.</p>
+        <ul><li>Full library or by collection</li><li>Uncompressed master files delivered</li></ul>
+      </div>
+      <div class="card">
+        <div class="tag">Media, education &amp; studios</div>
+        <h3>Annual Voice Contract</h3>
+        <p>New narration in this voice for your organisation throughout the year, or a licensed, protected digital voice with clear usage terms.</p>
+        <ul><li>Agreed annual hours</li><li>Voice-protection and usage-limit clauses</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Request a Quote</h2>
+    <p class="lead">Tell us about your organisation and intended use. We'll send the full catalog and a proposal within 48 hours.</p>
+    <form id="inquiry">
+      <div><label>Name</label><input name="name" required></div>
+      <div><label>Company</label><input name="company" required></div>
+      <div><label>Email</label><input name="email" type="email" required></div>
+      <div><label>Type of engagement</label>
+        <select name="type">
+          <option>Distribution License</option>
+          <option>Voice Data License (AI)</option>
+          <option>Rights Acquisition</option>
+          <option>Annual Voice Contract</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="full"><label>Details</label><textarea name="details" placeholder="Collections of interest, territories, term, intended use..."></textarea></div>
+      <div class="full"><button class="btn primary" type="submit">Send Request</button></div>
+    </form>
+  </div>
+</section>
+
+<footer>© <span id="year"></span> FushaVoice · fushavoice.com — narrator of <a href="https://www.youtube.com/@Waraq" target="_blank" rel="noopener">Waraq on YouTube</a>. All rights reserved. Samples and voice may not be used to train any model without a written license.</footer>
+
+<script>
+// ===== Edit these to match your library =====
+const CONTACT_EMAIL = 'hello@fushavoice.com';
+
+const CATEGORIES = [
+  { id: 'ancient', en: 'Ancient Civilisations', ar: 'الحضارات القديمة', desc: 'Sumer, Egypt, Carthage, Greece, Rome, Persia, Canaan.' },
+  { id: 'islamic', en: 'Islamic & Arab History', ar: 'التاريخ الإسلامي والعربي', desc: 'The Mamluks, the Assassins, Al-Andalus, Ibn Battuta, the Algerian Revolution.' },
+  { id: 'europe',  en: 'Europe', ar: 'أوروبا', desc: 'Byzantium, England, France, Germany, Spain, the Papacy, the Crusades, the Vikings.' },
+  { id: 'asia',    en: 'Asia', ar: 'آسيا', desc: 'China from the dynasties to the last emperor, the Three Kingdoms, Japan.' },
+  { id: 'modern',  en: 'Modern Wars & the 20th Century', ar: 'الحروب الحديثة', desc: 'Both World Wars, the Cold War, Korea, Vietnam, the Soviet Union.' },
+  { id: 'books',   en: 'Books, Myths & Stories', ar: 'كتب وأساطير وقصص', desc: 'Ibn Khaldun’s Muqaddimah, Homer, The Prince, world myths and travellers’ tales.' },
+];
+
+// Featured episodes from the Waraq channel (views as of Oct 2026)
+const EPISODES = [
+  { id: '8Yhg6X3n-ls', cat: 'europe',  dur: '3:52:43', views: '1.8M', ar: 'التاريخ الكامل للإمبراطورية الرومانية: روما الغربية وبيزنطة', en: 'The Complete History of the Roman Empire: Rome and Byzantium to the Fall of Constantinople' },
+  { id: 'I_BSug43tUM', cat: 'europe',  dur: '1:43:41', views: '924K', ar: 'التاريخ الكامل لإنجلترا: من القبائل القديمة إلى المملكة الحديثة', en: 'The Complete History of England: From Ancient Tribes to the Modern Kingdom' },
+  { id: 'ZQnXkraXCXw', cat: 'books',   dur: '3:38:15', views: '850K', ar: '24 قصة لرحالة من حول العالم ومن حقب زمنية مختلفة', en: '24 Travellers’ Tales from Around the World and Across the Ages' },
+  { id: '65xzlT6k0fg', cat: 'asia',    dur: '3:43:45', views: '697K', ar: 'الدليل الكامل والشامل لتاريخ اليابان', en: 'The Complete History of Japan: From the Beginning to the Modern Era' },
+  { id: 'TFtKTzZNzr0', cat: 'europe',  dur: '1:28:30', views: '654K', ar: 'التاريخ الكامل لألمانيا: من قبل الميلاد إلى الحرب العالمية الثانية', en: 'The Complete History of Germany: From Antiquity to the Second World War' },
+  { id: 'mHIQhYU1FcY', cat: 'ancient', dur: '2:02:02', views: '599K', ar: 'التاريخ الكامل لروما القديمة حتى سقوط روما', en: 'The Complete History of Ancient Rome: From the 8th Century BC to the Fall of Rome' },
+  { id: 'UKS7ljVFZ2A', cat: 'books',   dur: '55:37',   views: '585K', ar: 'ملخص شامل لكتاب مقدمة ابن خلدون', en: 'A Comprehensive Summary of Ibn Khaldun’s Muqaddimah' },
+  { id: 'i_EqA8Urujs', cat: 'modern',  dur: '2:19:21', views: '562K', ar: 'القصة الكاملة للحرب العالمية الثانية', en: 'The Complete Story of the Second World War' },
+  { id: 'kJUpv6hHA90', cat: 'asia',    dur: '3:48:05', views: '397K', ar: 'تاريخ الصين القديم: حقبة الممالك الثلاث', en: 'Ancient China: The Three Kingdoms Era, from the Fall of Han to the Jin' },
+  { id: 'RmUQnyExSl8', cat: 'modern',  dur: '1:14:55', views: '387K', ar: 'الحرب الباردة: القصة الكاملة', en: 'The Cold War: The Complete Story' },
+  { id: 'V4RWALkUCos', cat: 'islamic', dur: '1:32:15', views: '355K', ar: 'القصة الحقيقية لجماعة الحشاشين', en: 'The True Story of the Assassins: From Their Rise to the Death of Hassan-i Sabbah' },
+  { id: 'eQh0_uk1F9E', cat: 'ancient', dur: '2:17:14', views: '329K', ar: 'التاريخ الكامل لقرطاج: من البداية حتى السقوط', en: 'The Complete History of Carthage: From Founding to Fall' },
+  { id: 'tmbp2wvwGIk', cat: 'islamic', dur: '1:18:05', views: '249K', ar: 'القصة الكاملة لرحلات ابن بطوطة', en: 'The Journeys of Ibn Battuta: From Tangier to China and India' },
+  { id: 'bLu_o8PPz9o', cat: 'ancient', dur: '1:23:14', views: '197K', ar: 'تاريخ الحضارة السومرية من البداية حتى النهاية', en: 'The Sumerian Civilisation: From Beginning to End' },
+  { id: 'uIG3W9BdrAs', cat: 'islamic', dur: '2:35:57', views: '193K', ar: 'القصة الكاملة للثورة الجزائرية', en: 'The Algerian Revolution: From the Beginning to Independence' },
+  { id: '8xJULQdAmwI', cat: 'books',   dur: '1:33:53', views: '178K', ar: 'تلخيص شامل لملحمتي الإلياذة والأوديسة', en: 'Homer’s Iliad and Odyssey: A Complete Retelling' },
+  { id: 'jhn3eoiQ2GI', cat: 'islamic', dur: '2:48:28', views: '154K', ar: 'القصة الكاملة للمماليك في مصر', en: 'The Mamluks of Egypt: From Qutuz to Muhammad Ali Pasha' },
+  { id: 'PDehHbcoFTI', cat: 'modern',  dur: '1:20:03', views: '458K', ar: 'القصة الكاملة للحرب الأهلية الأمريكية', en: 'The American Civil War: Key Events, Figures and Battles' },
+];
+// ============================================
+
+const catName = id => (CATEGORIES.find(c => c.id === id) || {}).en || id;
+
+document.getElementById('categories').innerHTML = CATEGORIES.map(c => {
+  const n = EPISODES.filter(e => e.cat === c.id).length;
+  return `<div class="card">
+    <div class="ar" lang="ar" dir="rtl">${c.ar}</div>
+    <h3>${c.en}</h3>
+    <p>${c.desc}</p>
+    <ul><li><a href="#samples" data-jump="${c.id}">${n} featured episode${n === 1 ? '' : 's'} →</a></li></ul>
+  </div>`;
+}).join('');
+
+let currentCat = 'all';
+function renderEpisodes() {
+  const list = EPISODES.filter(e => currentCat === 'all' || e.cat === currentCat);
+  document.getElementById('episodeList').innerHTML = list.map(e => `
+    <a class="ep" href="https://www.youtube.com/watch?v=${e.id}" target="_blank" rel="noopener">
+      <div class="thumb">
+        <img src="https://img.youtube.com/vi/${e.id}/mqdefault.jpg" alt="" loading="lazy"
+             onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${e.id}/hqdefault.jpg'">
+        <span class="dur">${e.dur}</span>
+        <div class="play"><span>▶</span></div>
+      </div>
+      <div class="body">
+        <div class="ar" lang="ar" dir="rtl">${e.ar}</div>
+        <div class="en">${e.en}</div>
+        <div class="meta"><span class="cat">${catName(e.cat)}</span><span>${e.views} views</span></div>
+      </div>
+    </a>`).join('');
+}
+function renderFilters() {
+  const cats = [{ id: 'all', en: 'All' }, ...CATEGORIES];
+  document.getElementById('filters').innerHTML = cats.map(c =>
+    `<button class="${c.id === currentCat ? 'active' : ''}" data-cat="${c.id}">${c.en}</button>`
+  ).join('');
+}
+function setCat(id) { currentCat = id; renderFilters(); renderEpisodes(); }
+
+document.getElementById('filters').addEventListener('click', e => {
+  if (e.target.dataset.cat) setCat(e.target.dataset.cat);
+});
+document.getElementById('categories').addEventListener('click', e => {
+  if (e.target.dataset.jump) setCat(e.target.dataset.jump);
+});
+setCat('all');
+
+document.getElementById('inquiry').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const subject = `${f.get('type')} inquiry — ${f.get('company')}`;
+  const body = `Name: ${f.get('name')}\nCompany: ${f.get('company')}\nEmail: ${f.get('email')}\nEngagement: ${f.get('type')}\n\n${f.get('details')}`;
+  location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
