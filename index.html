@@ -209,7 +209,9 @@
         </select>
       </div>
       <div class="full"><label>Details</label><textarea name="details" placeholder="Collections of interest, territories, term, intended use..."></textarea></div>
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <div class="full"><button class="btn primary" type="submit">Send Request</button></div>
+      <p class="full" id="form-status" role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>
@@ -218,7 +220,7 @@
 
 <script>
 // ===== Edit these to match your library =====
-const CONTACT_EMAIL = 'hello@fushavoice.com';
+const CONTACT_EMAIL = 'mfares@gmail.com';
 
 const CATEGORIES = [
   { id: 'ancient', en: 'Ancient Civilisations', ar: 'الحضارات القديمة', desc: 'Sumer, Egypt, Carthage, Greece, Rome, Persia, Canaan.' },
@@ -298,12 +300,33 @@ document.getElementById('categories').addEventListener('click', e => {
 });
 setCat('all');
 
-document.getElementById('inquiry').addEventListener('submit', e => {
+document.getElementById('inquiry').addEventListener('submit', async e => {
   e.preventDefault();
-  const f = new FormData(e.target);
-  const subject = `${f.get('type')} inquiry — ${f.get('company')}`;
-  const body = `Name: ${f.get('name')}\nCompany: ${f.get('company')}\nEmail: ${f.get('email')}\nEngagement: ${f.get('type')}\n\n${f.get('details')}`;
-  location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const form = e.target;
+  const btn = form.querySelector('button[type=submit]');
+  const status = document.getElementById('form-status');
+  const f = new FormData(form);
+  f.append('_subject', `${f.get('type')} inquiry — ${f.get('company')}`);
+  f.append('_replyto', f.get('email'));
+  f.append('_template', 'table');
+  f.append('_captcha', 'false');
+  btn.disabled = true;
+  status.textContent = 'Sending…';
+  try {
+    const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: f,
+    });
+    const data = await res.json();
+    if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || 'Request failed');
+    form.reset();
+    status.textContent = 'Thank you — your request has been sent. We will reply within 48 hours.';
+  } catch (err) {
+    status.textContent = `Sorry, something went wrong. Please email us directly at ${CONTACT_EMAIL}.`;
+  } finally {
+    btn.disabled = false;
+  }
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();
