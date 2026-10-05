@@ -6,6 +6,7 @@
 //   ADMIN_PASSWORD  password for /mfares (required; /mfares is disabled without it)
 //   ADMIN_USER      username for /mfares (default "admin")
 //   DATABASE_URL    PostgreSQL connection string; if unset, visits are stored in DATA_FILE
+//   SITE_URL        public site address used in robots.txt and sitemap.xml (default https://fushavoice.com)
 //   DATA_FILE       JSON-lines file for visits (default ./data/visits.jsonl)
 
 const http = require('node:http');
@@ -17,6 +18,8 @@ const PORT = Number(process.env.PORT) || 8080;
 const ADMIN_USER = process.env.ADMIN_USER || 'admin';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
 const DATA_FILE = process.env.DATA_FILE || path.join(__dirname, 'data', 'visits.jsonl');
+const SITE_URL = (process.env.SITE_URL || 'https://fushavoice.com').replace(/\/$/, '');
+const STARTED = new Date().toISOString().slice(0, 10);
 const INDEX_HTML = fs.readFileSync(path.join(__dirname, 'index.html'));
 
 // ===== Storage =====
@@ -209,10 +212,24 @@ function readBody(req, limit = 2048) {
 const server = http.createServer(async (req, res) => {
   const { pathname } = new URL(req.url, 'http://x');
   try {
-    if (req.method === 'GET' && (pathname === '/' || pathname === '/index.html')) {
-      record(req);
+    if ((req.method === 'GET' || req.method === 'HEAD') && (pathname === '/' || pathname === '/index.html')) {
+      if (req.method === 'GET') record(req);
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });
-      return res.end(INDEX_HTML);
+      return res.end(req.method === 'HEAD' ? undefined : INDEX_HTML);
+    }
+
+    if (pathname === '/robots.txt') {
+      res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+      return res.end(`User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+    }
+
+    if (pathname === '/sitemap.xml') {
+      res.writeHead(200, { 'Content-Type': 'application/xml; charset=utf-8' });
+      return res.end(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>${SITE_URL}/</loc><lastmod>${STARTED}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+</urlset>
+`);
     }
 
     if (req.method === 'POST' && pathname === '/api/event') {
@@ -230,10 +247,10 @@ const server = http.createServer(async (req, res) => {
         return res.end('Admin is disabled: set the ADMIN_PASSWORD environment variable (Run time) and redeploy.');
       }
       if (!checkAuth(req)) {
-        res.writeHead(401, { 'WWW-Authenticate': 'Basic realm="FushaVoice Admin"', 'Content-Type': 'text/plain' });
+        res.writeHead(401, { 'WWW-Authenticate': 'Basic realm="FushaVoice Admin"', 'Content-Type': 'text/plain', 'X-Robots-Tag': 'noindex, nofollow' });
         return res.end('Login required');
       }
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' });
       return res.end(await adminPage(req));
     }
 
